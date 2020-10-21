@@ -11,17 +11,6 @@
  *
  ******************************************************************************/
 
- /*
-    The file to be compressed is empty
-    Normal Case
-    The file to be compressed does not exist
-    The file to be compressed contains many things
-    The user passes in the wrong amount of arguments
-    The file to be compressed contains one really long word with no spaces
-    The file to be compressed contains only lowercase or only uppercase characters
-    Any other relevant edge cases you can think of
-*/
-
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.After;
@@ -33,16 +22,29 @@ import java.io.PrintStream;
 import java.io.InputStream;
 import java.io.IOException;
 
+/*
+    The file to be compressed is empty
+    Normal Case
+    The file to be compressed does not exist
+    The file to be compressed contains many things
+    The user passes in the wrong amount of arguments
+    The file to be compressed contains one really long word with no spaces
+    The file to be compressed contains only lowercase or only uppercase characters
+    Any other relevant edge cases you can think of
+*/
+
 public class HuffmanTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
     private final PrintStream originalErr = System.err;
+    Huffman huffman;
 
     @Before
     public void setUpStreams() {
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
+        huffman.reset();
     }
 
     @After
@@ -51,7 +53,8 @@ public class HuffmanTest {
         System.setErr(originalErr);
     }
 
-    //  change to  edit
+    //***//  change to checkBytes 
+    // compares each byte of each file to see if they are the same
     public void inOut(String tosend) throws IOException {
         ByteArrayInputStream in = new ByteArrayInputStream(tosend.getBytes());
         System.setIn(in);
@@ -71,21 +74,30 @@ public class HuffmanTest {
 
     @Test
     public void inOut1() throws IOException {
-        inOut("Hello");
+        String[] args = {"test1.txt", "test1Dest.txt"};
+
+        HuffmanSE2.main(args);
+        assertEquals(true, checkBytes(args));
     }
 
     @Test
     public void inOut2() throws IOException {
-        inOut("Hello World!");
+        String[] args = {"test1.txt", "test1Dest.txt"};
+
+        HuffmanSE2.main(args);
+        assertEquals(true, checkBytes(args));
     }
 
     @Test
     public void inOut3() throws IOException {
-        inOut("Friends, Romans, Coutrymen, lend me your ears; I come to bury Caesar, not to praise him.");
+        String[] args = {"test1.txt", "test1Dest.txt"};
+
+        HuffmanSE2.main(args);
+        assertEquals(true, checkBytes(args));
     }
 
     @Test
-    public void inOut4() throws IOException {
-        inOut("");
+    public void checkInput() throws IOException {
+    
     }
 }

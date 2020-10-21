@@ -1,5 +1,7 @@
 import java.util.stream.Node;
 
+import sun.rmi.runtime.NewThreadAction;
+
 /******************************************************************************
  *  Author : amg16h Adam Garcia
  *  Course : CS375 Software Engineering II
@@ -14,6 +16,8 @@ import java.util.stream.Node;
  *
  * 
  ******************************************************************************/
+
+import java.io.File;
 
 public class Huffman {
 
@@ -39,10 +43,12 @@ public class Huffman {
       public int compare(Node other) {
          return this.frequency - other.frequency;
       }
-
    }
 
-   public void compress() {
+   public void compress(String sourceFile, String compressedFile) {
+      // creates new file destination
+      fileChecker(sourceFile, compressedFile);
+
       // read input from file and store in array
 
       // comparison
@@ -79,6 +85,36 @@ public class Huffman {
 
    private static Node readTrie() {
 
+   }
+
+   // destroys entire trie
+   public void reset() {
+
+   }
+
+   // returns true if oldFile exists and newFile exists and is empty, otherwise returns false
+   private static boolean fileChecker(String sourceFile, String compressedFile) {
+      try {
+         File fileSrc = new File(sourceFile);
+         File fileDest = new File(compressedFile);
+
+         if(fileSrc.exists()) {
+            if(!fileDest.exists()){
+               fileDest.createNewFile();
+            } else {
+               // delete existing file and recreate empty
+               fileDest.delete();
+               fileDest.createNewFile();
+            }
+         } else {
+            System.out.println("Source file does not exist.");
+            return false;
+         }
+      } catch (Exception e) {
+         System.out.println("Could not compress file");
+         return false;
+      }
+      return true;
    }
 
    public static void main(String[] args) {

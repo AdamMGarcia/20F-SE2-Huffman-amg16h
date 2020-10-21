@@ -23,10 +23,13 @@ public class Main {
 			return;
 		}
 
+		String oldFile = args[0];
+		String newFile = args[1];
+		
         // calls Huffman
 		try {
 			Huffman yeet = new Huffman();
-			yeet.compress();
+			yeet.compress(oldFile, newFile);
 		} catch (Exception e) {
 			System.out.print("code broke\n");
 		}
