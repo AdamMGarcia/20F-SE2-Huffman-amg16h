@@ -15,6 +15,7 @@
 
  public class Huffman {
 
+   // change
     private int yaw;
     private int yeet;
     private char Char;
