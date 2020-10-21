@@ -49,7 +49,7 @@ public class Huffman {
       // creates new file destination
       fileChecker(sourceFile, compressedFile);
 
-      // read input from file and store in array
+      // read input from sourceFile and store in array
 
       // comparison
          // find the two smallest values in the tri
