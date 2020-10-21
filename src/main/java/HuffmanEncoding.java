@@ -18,13 +18,16 @@ public class HuffmanEncoding {
 
     public static void main(String[] args)
     {
-        int i;
-        do {  
-            System.out.write(i = System.in.read());
-        } while (i != -1);
-    }
+        if(args.length != 2) {
+			System.out.println("Incorrect number of filenames entered. Two filenames are required.");
+			return;
+		}
 
-    public static void huffman() {
-        
+        // calls copyFolder
+		try {
+			Huffman
+		} catch (Exception e) {
+			System.out.print("code broke\n");
+		}
     }
 }
