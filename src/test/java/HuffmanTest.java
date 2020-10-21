@@ -3,12 +3,12 @@
  *  Course : CS375 Software Engineering II
  *  Date   : Fall 2020
  *
- *  Program: CopyStdIn 
- *  Compile: javac CopyStdIn.java
- *  Execute: java CopyStdIn
+ *  Program: HuffmanSE2
+ *  Compile: javac HuffmanSE2.java
+ *  Execute: java HuffmanSE2.java  uncompressed-file-name  compressed-file-name
  * 
- *  Note   : Copies everything from stdin to stdout. 
- *
+ *  Note   : Uses Huffman encoding to compress a file.
+ * 
  ******************************************************************************/
 
 import static org.junit.Assert.assertEquals;
@@ -21,17 +21,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.InputStream;
 import java.io.IOException;
-
-/*
-    The file to be compressed is empty
-    Normal Case
-    The file to be compressed does not exist
-    The file to be compressed contains many things
-    The user passes in the wrong amount of arguments
-    The file to be compressed contains one really long word with no spaces
-    The file to be compressed contains only lowercase or only uppercase characters
-    Any other relevant edge cases you can think of
-*/
 
 public class HuffmanTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -55,7 +44,7 @@ public class HuffmanTest {
 
     //***//  change to checkBytes 
     // compares each byte of each file to see if they are the same
-    public void inOut(String tosend) throws IOException {
+    public void checkBytes(String[] tosend) throws IOException {
         ByteArrayInputStream in = new ByteArrayInputStream(tosend.getBytes());
         System.setIn(in);
 
@@ -71,15 +60,6 @@ public class HuffmanTest {
 
         assertEquals("Checking stdout from stdin.", tosend, outs);
     }
-
-    The file to be compressed is empty
-    Normal Case
-    The file to be compressed does not exist
-    The file to be compressed contains many things
-    The user passes in the wrong amount of arguments
-    The file to be compressed contains one really long word with no spaces
-    The file to be compressed contains only lowercase or only uppercase characters
-    Any other relevant edge cases you can think of
 
     // The file to be compressed is empty
     @Test
@@ -120,7 +100,7 @@ public class HuffmanTest {
     // The user passes in the wrong amount of arguments
     @Test
     public void test5() throws IOException {
-        String[] args = {"test5.txt", "test5Dest.txt"};
+        String[] args = {"test5.txt", "test5Dest.txt", "yeet"};
 
         HuffmanSE2.main(args);
         assertEquals(true, checkBytes(args));

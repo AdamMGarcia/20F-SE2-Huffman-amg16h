@@ -8,7 +8,6 @@
  *  Execute: java HuffmanSE2.java  uncompressed-file-name  compressed-file-name
  * 
  *  Note   : Uses Huffman encoding to compress a file.
- *
  * 
  ******************************************************************************/
 
