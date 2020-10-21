@@ -72,32 +72,75 @@ public class HuffmanTest {
         assertEquals("Checking stdout from stdin.", tosend, outs);
     }
 
+    The file to be compressed is empty
+    Normal Case
+    The file to be compressed does not exist
+    The file to be compressed contains many things
+    The user passes in the wrong amount of arguments
+    The file to be compressed contains one really long word with no spaces
+    The file to be compressed contains only lowercase or only uppercase characters
+    Any other relevant edge cases you can think of
+
+    // The file to be compressed is empty
     @Test
-    public void inOut1() throws IOException {
+    public void test1() throws IOException {
         String[] args = {"test1.txt", "test1Dest.txt"};
 
         HuffmanSE2.main(args);
         assertEquals(true, checkBytes(args));
     }
 
+    // Normal Case
     @Test
-    public void inOut2() throws IOException {
-        String[] args = {"test1.txt", "test1Dest.txt"};
+    public void test2() throws IOException {
+        String[] args = {"test2.txt", "test2Dest.txt"};
 
         HuffmanSE2.main(args);
         assertEquals(true, checkBytes(args));
     }
 
+    // The file to be compressed does not exist
     @Test
-    public void inOut3() throws IOException {
-        String[] args = {"test1.txt", "test1Dest.txt"};
+    public void test3() throws IOException {
+        String[] args = {"test3.txt", "test3Dest.txt"};
 
         HuffmanSE2.main(args);
         assertEquals(true, checkBytes(args));
     }
 
+    // The file to be compressed contains many things
     @Test
-    public void checkInput() throws IOException {
-    
+    public void test4() throws IOException {
+        String[] args = {"test4.txt", "test4Dest.txt"};
+
+        HuffmanSE2.main(args);
+        assertEquals(true, checkBytes(args));
+    }
+
+    // The user passes in the wrong amount of arguments
+    @Test
+    public void test5() throws IOException {
+        String[] args = {"test5.txt", "test5Dest.txt"};
+
+        HuffmanSE2.main(args);
+        assertEquals(true, checkBytes(args));
+    }
+
+    // The file to be compressed contains one really long word with no spaces
+    @Test
+    public void test6() throws IOException {
+        String[] args = {"test6.txt", "test6Dest.txt"};
+
+        HuffmanSE2.main(args);
+        assertEquals(true, checkBytes(args));
+    }
+
+    // The file to be compressed contains only lowercase or only uppercase characters
+    @Test
+    public void test7() throws IOException {
+        String[] args = {"test7.txt", "test7Dest.txt"};
+
+        HuffmanSE2.main(args);
+        assertEquals(true, checkBytes(args));
     }
 }

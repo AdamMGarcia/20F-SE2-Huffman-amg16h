@@ -14,9 +14,9 @@
 
 import java.io.IOException;
 
-public class Main {
+public class HuffmanSE2 {
 
-    public void main(String[] args)
+    public static void main(String[] args)
     {
 		// checks terminal input
         if(args.length != 2) {
