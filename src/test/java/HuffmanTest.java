@@ -51,6 +51,7 @@ public class HuffmanTest {
         System.setErr(originalErr);
     }
 
+    //  change to  edit
     public void inOut(String tosend) throws IOException {
         ByteArrayInputStream in = new ByteArrayInputStream(tosend.getBytes());
         System.setIn(in);

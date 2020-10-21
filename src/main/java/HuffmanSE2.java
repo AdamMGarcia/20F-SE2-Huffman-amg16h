@@ -3,29 +3,30 @@
  *  Course : CS375 Software Engineering II
  *  Date   : Fall 2020
  *
- *  Program: CopyStdIn 
- *  Compile: javac CopyStdIn.java
- *  Execute: java CopyStdIn
+ *  Program: HuffmanSE2
+ *  Compile: javac HuffmanSE2.java
+ *  Execute: java HuffmanSE2.java  uncompressed-file-name  compressed-file-name
  * 
- *  Note   : Copies everything from stdin to stdout. 
+ *  Note   : Uses Huffman encoding to compress a file.
  *
  * 
  ******************************************************************************/
 
 import java.io.IOException;
 
-public class HuffmanEncoding {
+public class Main {
 
-    public static void main(String[] args)
+    public void main(String[] args)
     {
         if(args.length != 2) {
 			System.out.println("Incorrect number of filenames entered. Two filenames are required.");
 			return;
 		}
 
-        // calls copyFolder
+        // calls Huffman
 		try {
-			Huffman
+			Huffman yeet = new Huffman();
+			yeet.compress();
 		} catch (Exception e) {
 			System.out.print("code broke\n");
 		}

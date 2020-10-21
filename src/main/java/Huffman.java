@@ -6,9 +6,9 @@ import java.util.stream.Node;
  *  Date   : Fall 2020
  *
  *  Program: Huffman
- *  File   : Huffman
- *  Compile: javac CopyStdIn.java
- *  Execute: java CopyStdIn
+ *  File   : Huffman.java
+ *  Compile: 
+ *  Execute: 
  * 
  *  Note   : Copies everything from stdin to stdout. 
  *
@@ -43,6 +43,8 @@ public class Huffman {
    }
 
    public void compress() {
+      // read input from file and store in array
+
       // comparison
          // find the two smallest values in the tri
          // add them together for value (frequency)
