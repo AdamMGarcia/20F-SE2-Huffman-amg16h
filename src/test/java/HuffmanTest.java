@@ -22,18 +22,21 @@ import java.io.PrintStream;
 import java.io.InputStream;
 import java.io.IOException;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+
 public class HuffmanTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
     private final PrintStream originalErr = System.err;
-    Huffman huffman;
 
     @Before
     public void setUpStreams() {
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
-        huffman.reset();
     }
 
     @After
@@ -42,32 +45,26 @@ public class HuffmanTest {
         System.setErr(originalErr);
     }
 
-    //***//  change to checkBytes 
-    // compares each byte of each file to see if they are the same
-    public void checkBytes(String[] tosend) throws IOException {
-        ByteArrayInputStream in = new ByteArrayInputStream(tosend.getBytes());
-        System.setIn(in);
-
-        // now call main
-        CopyStdIn.main(new String[] {"Yes"});
-
-        // reset to normal stdlin
-        System.setIn(System.in);
-
-        // extra character at end, delete it
-        String outs = outContent.toString();
-        outs = outs.substring(0, outs.length() - 1);
-
-        assertEquals("Checking stdout from stdin.", tosend, outs);
-    }
+    // reads file completly into byte array
+    public static byte[] toByteArray(String fileName)
+   {
+       try {
+            Path path = Paths.get(fileName);
+            byte[] data = Files.readAllBytes(path);
+            return data;
+       } catch (IOException e) {
+            byte[] fail = new byte[0];
+            return fail;
+       }
+   }
 
     // The file to be compressed is empty
     @Test
     public void test1() throws IOException {
         String[] args = {"test1.txt", "test1Dest.txt"};
 
-        HuffmanSE2.main(args);
-        assertEquals(true, checkBytes(args));
+        Huffman.main(args);
+        assertEquals(toByteArray("test1Solution.txt"), toByteArray(args[1]));
     }
 
     // Normal Case
@@ -75,8 +72,8 @@ public class HuffmanTest {
     public void test2() throws IOException {
         String[] args = {"test2.txt", "test2Dest.txt"};
 
-        HuffmanSE2.main(args);
-        assertEquals(true, checkBytes(args));
+        Huffman.main(args);
+        assertEquals(toByteArray("test2Solution.txt"), toByteArray(args[1]));
     }
 
     // The file to be compressed does not exist
@@ -84,8 +81,8 @@ public class HuffmanTest {
     public void test3() throws IOException {
         String[] args = {"test3.txt", "test3Dest.txt"};
 
-        HuffmanSE2.main(args);
-        assertEquals(true, checkBytes(args));
+        Huffman.main(args);
+        assertEquals(toByteArray("test3Solution.txt"), toByteArray(args[1]));
     }
 
     // The file to be compressed contains many things
@@ -93,8 +90,8 @@ public class HuffmanTest {
     public void test4() throws IOException {
         String[] args = {"test4.txt", "test4Dest.txt"};
 
-        HuffmanSE2.main(args);
-        assertEquals(true, checkBytes(args));
+        Huffman.main(args);
+        assertEquals(toByteArray("test4Solution.txt"), toByteArray(args[1]));
     }
 
     // The user passes in the wrong amount of arguments
@@ -102,8 +99,8 @@ public class HuffmanTest {
     public void test5() throws IOException {
         String[] args = {"test5.txt", "test5Dest.txt", "yeet"};
 
-        HuffmanSE2.main(args);
-        assertEquals(true, checkBytes(args));
+        Huffman.main(args);
+        assertEquals(toByteArray("test5Solution.txt"), toByteArray(args[1]));
     }
 
     // The file to be compressed contains one really long word with no spaces
@@ -111,8 +108,8 @@ public class HuffmanTest {
     public void test6() throws IOException {
         String[] args = {"test6.txt", "test6Dest.txt"};
 
-        HuffmanSE2.main(args);
-        assertEquals(true, checkBytes(args));
+        Huffman.main(args);
+        assertEquals(toByteArray("test6Solution.txt"), toByteArray(args[1]));
     }
 
     // The file to be compressed contains only lowercase or only uppercase characters
@@ -120,7 +117,7 @@ public class HuffmanTest {
     public void test7() throws IOException {
         String[] args = {"test7.txt", "test7Dest.txt"};
 
-        HuffmanSE2.main(args);
-        assertEquals(true, checkBytes(args));
+        Huffman.main(args);
+        assertEquals(toByteArray("test7Solution.txt"), toByteArray(args[1]));
     }
 }
